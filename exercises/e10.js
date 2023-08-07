@@ -23,8 +23,7 @@ export const promiseArr = [promise1, promise2, promise3, promise4];
  * * .allSettled()
  */
 
-// Your code goes here...
-export const handlePromise1 = Promise.any(promiseArr).catch((e) => e);
+export const handlePromise1 = Promise.all(promiseArr).catch(e => e);
 
 /**
  * @task
@@ -40,7 +39,7 @@ export const handlePromise1 = Promise.any(promiseArr).catch((e) => e);
  * !!! The function must be exported !!!
  */
 
-// Your code goes here...
+export const handlePromise2 = (promisesArray) => Promise.any(promisesArray).then(value => value);
 
 /**
  * @task
@@ -56,7 +55,7 @@ export const handlePromise1 = Promise.any(promiseArr).catch((e) => e);
  * !!! The function must be exported !!!
  */
 
-// Your code goes here...
+export const handlePromise3 = (promisesArray) => Promise.allSettled(promisesArray).then(arr => arr);
 
 /**
  * @task
@@ -66,7 +65,7 @@ export const handlePromise1 = Promise.any(promiseArr).catch((e) => e);
  * The value of newPromiseArr MUST have more than one promise in the array!
  */
 
-export const newPromiseArr = promiseArr.filter(/* <Your code goes here>*/);
+export const newPromiseArr = promiseArr.filter(promise => promiseArr.indexOf(promise) === 0 || promiseArr.indexOf(promise) === 3);
 
 // Do NOT refactor or update handlePromise4 function, it's all set to work
 export const handlePromise4 = (arr) => {

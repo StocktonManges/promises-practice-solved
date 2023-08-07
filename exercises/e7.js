@@ -19,8 +19,15 @@
  *          }
  */
 
-export function parsePromised() {
-  // Your code goes here...
+export function parsePromised(jsonString) {
+  return new Promise((res, rej) => {
+    try {
+      const parsedString = JSON.parse(jsonString);
+      res(parsedString);
+    } catch (error) {
+      rej(error);
+    }
+  })
 }
 
 /**
@@ -30,13 +37,13 @@ export function parsePromised() {
  * * logs the message property of the error object
  */
 
-export function onReject() {
-  // Your code goes here...
+export function onReject(errObj) {
+  console.log(errObj.message);
 }
 
 /**
  * @task
- * Create handlePromise() function that follows the steps::
+ * Create handlePromise() function that follows the steps:
  * * Takes a promise as an argument. The promise can either reject with a reason or resolves with a value
  * * The promise returns the promise value when resolved
  * * Catches the reason and follows the logic:
@@ -46,8 +53,8 @@ export function onReject() {
  * Example: export const promiseHandler = () => return <your code>
  */
 
-export const handlePromise = () => {
-  // Your code goes here...
+export const handlePromise = (promise) => {
+  return promise.catch(err => err.message !== null ? onReject(err) : err);
 };
 
 // === TEST YOURSELF ===

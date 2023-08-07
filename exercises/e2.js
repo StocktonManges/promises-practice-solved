@@ -15,9 +15,14 @@
  * Example: export const getPromise = (bool) = return <Your promise constructor code>
  */
 
-export const getPromise = () => {
-  // Your code goes here...
+export const getPromise = (boolean) => {
+  return new Promise((resolve, reject) => {
+    boolean ? resolve('The PROMISE was RESOLVED') : reject('The PROMISE was REJECTED');
+  });
 };
+
+const onRejected = rejectMessage => console.log(rejectMessage);
+getPromise(false).catch(onRejected);
 
 /**
  * Create a handlePromise function that follows:
@@ -27,9 +32,10 @@ export const getPromise = () => {
  * * The Promise Consumer must use the onFulfilled and onRejected callback of .then()
  * The handlePromise() function must be exported
  */
-
-export const handlePromise = () => {
-  // Your code goes here...
+export const handlePromise = promise => {
+  return promise
+    .then(message => message)
+    .catch(() => 'Uh Oh');
 };
 
 // === TEST YOURSELF ===

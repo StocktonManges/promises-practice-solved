@@ -5,7 +5,7 @@
  * @prerequisites Please, follow the list of steps you need to make:
  * * Execute`npx json-server --watch data/db.json` to start the db watcher
  * * the USERS json will start responding at 'http://localhost:3000/users/'
- */
+*/
 
 /**
  * @init_data
@@ -13,7 +13,10 @@
  * * set the usersUrl constant to store the json-server 'users' endpoint path
 */
 
+import fetch from "node-fetch";
+
 export const usersUrl = 'http://localhost:3000/users/';
+
 
 /**
  * @task
@@ -26,9 +29,10 @@ export const usersUrl = 'http://localhost:3000/users/';
  * Example: const getLoginList = (data) => {<Your code>}
 */
 
-const getLoginList = () => {
-  // Your code goes here...
-
+const getLoginList = (objArray) => {
+  const array = Array.from(objArray.map(item => item.login));
+  console.log(array);
+  return array;
 }
 
 /**
@@ -38,8 +42,7 @@ const getLoginList = () => {
  * example: const getData = <node_fetch_function_call>
 */
 
-// Your code goes here ...
-const getData;
+const getData = fetch(usersUrl);
 
 /**
  * @task 
@@ -52,9 +55,10 @@ const getData;
  *  .then(<Your_logging_and_return_code>)
 */
 
-// Your code goes here ...
-export const result = getData;
-
+export const result = getData
+  .then(data => data.json())
+  .then(data => getLoginList(data))
+  .then(data => data);
 
 // === TEST YOURSELF ===
 // Once you're finished run the test with "npm run test-11"
